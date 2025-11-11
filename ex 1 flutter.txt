@@ -1,0 +1,106 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Soundboard App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Soundboard Application',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.deepPurple,
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              const Text(
+                "🎵 Welcome to Soundboard!",
+                style: TextStyle(color: Colors.black, fontSize: 18),
+              ),
+              const SizedBox(height: 20),
+
+              // Sound buttons in a row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  soundButton("Drum", Icons.music_note, Colors.blue),
+                  soundButton("Clap", Icons.pan_tool, Colors.green),
+                  soundButton("Bell", Icons.notifications, Colors.orange),
+                ],
+              ),
+              const SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  soundButton("Guitar", Icons.queue_music, Colors.redAccent),
+                  soundButton("Piano", Icons.piano, Colors.teal),
+                  soundButton("Whistle", Icons.speaker, Colors.pink),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // Search bar (optional, can be for searching sounds)
+              const TextField(
+                decoration: InputDecoration(
+                  hintText: "Search Sound",
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Decorative container (like visualizer placeholder)
+              Container(
+                height: 150,
+                width: double.infinity,
+                color: Colors.deepPurple.shade100,
+                child: const Center(
+                  child: Text(
+                    "🎶 Sound Visualizer Area",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Reusable sound button widget
+  Widget soundButton(String label, IconData icon, Color color) {
+    return ElevatedButton(
+      onPressed: () {
+        // Later: add sound play functionality
+        debugPrint("Playing $label sound...");
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        padding: const EdgeInsets.all(16),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, size: 40),
+          const SizedBox(height: 5),
+          Text(label),
+        ],
+      ),
+    );
+  }
+}
